@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KPOP LAB</title>
+    <style>
+        /* 전체적인 스타일 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            background-color: #121212; /* 배경색 설정 */
+        }
+
+        /* 제목 스타일 */
+        h1 {
+            font-size: 48px;
+            margin-top: 20px;
+            margin-left: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #007bff; /* 제목 색상 변경 */
+        }
+
+        /* 검색 창 스타일 */
+        #search-box {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            padding: 15px;
+            width: 400px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* 검색 버튼 스타일 */
+        #search-btn {
+            padding: 15px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        /* 악보 표시 영역 스타일 */
+        #music-sheet {
+            margin-top: 50px;
+            padding: 20px;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #1e1e1e; /* 배경색 설정 */
+        }
+
+        #music-sheet img {
+            max-width: 100%;
+        }
+
+        /* 랭킹 및 새로운 노래 목록 스타일 */
+        #ranking-container {
+            display: flex;
+            justify-content: space-around; /* 가운데 정렬 */
+            margin-top: 50px;
+            padding: 20px;
+        }
+
+        .ranking-list {
+            flex: 1;
+            text-align: left;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+        }
+
+        .ranking-list h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #007bff; /* 파란색으로 변경 */
+        }
+
+        .ranking-list ol {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        .ranking-list li {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>KPOP LAB</h1>
+
+    <!-- 검색 창 -->
+    <input type="text" id="search-box" placeholder="노래 제목을 입력하세요...">
+    <button id="search-btn">검색</button>
+
+    <!-- 악보 표시 영역 -->
+    <div id="music-sheet">
+        <!-- 여기에 검색 결과로 표시될 악보가 나타납니다. -->
+    </div>
+
+    <!-- 랭킹 및 새로운 노래 목록 -->
+    <div id="ranking-container">
+        <!-- MOST POPULAR 랭킹 -->
+        <div class="ranking-list">
+            <h2>MOST POPULAR</h2>
+            <ol id="top-songs">
+                <!-- 여기에 갱신되는 랭킹이 표시될 것입니다. -->
+            </ol>
+        </div>
+        <!-- 새로운 노래 목록 -->
+        <div class="ranking-list">
+            <h2>Newly Added Songs</h2>
+            <ol id="new-songs">
+                <!-- 여기에 갱신되는 새로운 노래가 표시될 것입니다. -->
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // 검색 버튼 클릭 시 검색 기능 수행
+        document.getElementById('search-btn').addEventListener('click', function() {
+            var searchQuery = document.getElementById('search-box').value;
+            // 여기에 검색 기능을 수행하는 코드를 추가하세요.
+            // 사용자가 입력한 검색어(searchQuery)를 사용하여 악보나 코드를 검색하고 결과를 보여줍니다.
+            // 검색 결과를 보여주는 페이지로 이동하거나 동적으로 업데이트할 수 있습니다.
+            // 여기서는 예시로 alert를 사용하여 검색어를 출력합니다.
+            alert("검색어: " + searchQuery);
+
+            // 검색 결과 페이지로 이동
+            window.location.href = "검색 결과 페이지의 URL";
+        });
+
+        // 랭킹 및 새로운 노래 목록 데이터
+        var topSongsData = ["노래 1", "노래 2", "노래 3", "노래 4", "노래 5"];
+        var newSongsData = ["New Song 1", "New Song 2", "New Song 3", "New Song 4", "New Song 5"];
+
+        // 랭킹 및 새로운 노래 목록 업데이트 함수
+        function updateRanking() {
+            var topSongsList = document.getElementById('top-songs');
+            var newSongsList = document.getElementById('new-songs');
+            topSongsList.innerHTML = ''; // 랭킹 초기화
+            newSongsList.innerHTML = ''; // 새로운 노래 초기화
+
+            // MOST POPULAR 랭킹 업데이트
+            for (var i = 0; i < topSongsData.length; i++) {
+                var listItem = document.createElement('li');
+                listItem.textContent = topSongsData[i];
+                topSongsList.appendChild(listItem);
+            }
+
+            // 새로운 노래 목록 업데이트
+            for (var j = 0; j < newSongsData.length; j++) {
+                var newItem = document.createElement('li');
+                newItem.textContent = newSongsData[j];
+                newSongsList.appendChild(newItem);
+            }
+        }
+
+        // 페이지 로드 시 랭킹 및 새로운 노래 목록 업데이트
+        window.onload = function() {
+            updateRanking();
+        };
+    </script>
+</body>
+</html>
